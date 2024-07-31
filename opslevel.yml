@@ -1,0 +1,153 @@
+---
+version: 1
+service:
+  name: Shopping Cart Service
+  lifecycle: generally_available
+  tier: tier_1
+  product: Retail Website
+  owner: order_management_team
+  system: cart
+  language: Ruby
+  framework: Rails
+  description: Allows users to add/remove products in their virtual shopping carts
+    prior to placing an order.
+  aliases:
+  - cart
+  - Shopping Cart Service
+  - shopping-cart
+  - ShoppingCartService
+  tags:
+  - key: compliance
+    value: SOCII
+  - key: db
+    value: mysql
+  - key: db
+    value: Snowflake
+  - key: grade-letter
+    value: A
+  - key: kafka-topic
+    value: cart-additions
+  - key: pd_id
+    value: PAQ8CJA
+  - key: rails-version
+    value: 5.2.6
+  - key: release
+    value: '5.6'
+  - key: resource_provider
+    value: aws
+  tools:
+  - name: PagerDuty
+    category: incidents
+    url: https://opslevel.pagerduty.com/services/PHW94JT
+    environment: Production
+  - name: Sentry
+    category: errors
+    url: https://sentry.com/dashboard
+    environment: Production
+  - name: Splunk
+    category: logs
+    url: http://www.splunk.com/url
+    environment:
+  - name: Datadog
+    category: metrics
+    url: https://datadog.com/dashboard
+    environment:
+  - name: Confluence
+    category: runbooks
+    url: http://ua.atlassian.com/etc
+    environment:
+  - name: Gremlin
+    category: other
+    url: https://bigriverbooks.gremlin.com/catalog_service
+    environment: Staging
+  - name: Snyk
+    category: other
+    url: https://app.snyk.io/org/john-g5v/
+    environment:
+  - name: Admin
+    category: admin
+    url: https://catalog.bigriverbooks.com/admin
+    environment:
+  - name: Kubernetes
+    category: orchestrator
+    url: https://deploy.bigriver.com/catalog
+    environment:
+  - name: Pingdom
+    category: health_checks
+    url: https://bigriver.pingdom.com/catalog
+    environment:
+  - name: Sentry
+    category: errors
+    url: https://www.sentry.com/dashboard
+    environment: Staging
+  - name: Confluence
+    category: wiki
+    url: https://gitlab.com/jklabsinc/OpsLevel/wikis/home
+    environment:
+  - name: Jira
+    category: other
+    url: https://jk.atlassian.net/order-mgmt
+    environment:
+  - name: Octopus Deploy
+    category: deployment
+    url: https://octopus.com/app/admin/managing-infrastructure/deploys/
+    environment:
+  - name: Pagerduty
+    category: incidents
+    url: https://adgdemo.pagerduty.com/service-directory/PAQ8CJA
+    environment:
+  dependencies:
+  - alias: catalog_service
+  - alias: order_workflow_service
+    notes: 'This is a pub sub model '
+  - alias: wishlist
+  - alias: localization
+  - alias: stale_cart
+  alert_sources:
+  - type: pagerduty
+    external_id: PAQ8CJA
+  - type: datadog
+    external_id: '48998451'
+  properties:
+    code_freeze_date: '2024-06-28'
+    container_image:
+      build_date: '2024-01-03T18:25:43-05:00'
+      container_id: 8b97850f-3ace-42da-974c-62e19a5c9ddb
+      container_name: gcr.io/shopping_cart_service_image
+    dast_findings:
+    - hash: a0763a2972c1674057b3bb366f51a437823f074b4949421181bf1de29d5d9bd3
+      check: TLS 1.2
+      title: Weak Encryption
+      category: encryption
+      description: The software stores or transmits sensitive data using an encryption
+        scheme that is not strong enough.
+      information: https://github.com/ExxonMobil/Heimdall/blob/main/docs/checks.md#encryption
+    - hash: d0acc95483cf65fe331cc5d62a0686d2b6f1424db70a4d167636d3f90dccf4aa
+      check: TLS 1.1
+      title: Weak Encryption
+      category: encryption
+      description: The software stores or transmits sensitive data using an encryption
+        scheme that is not strong enough.
+      information: https://github.com/ExxonMobil/Heimdall/blob/main/docs/checks.md#encryption
+    - hash: d21a689c25feb705415c1297b3cc3d556ee5c18d4ebe7a556a90c71dd5a8ca32
+      check: TLS 1.0
+      title: Weak Encryption
+      category: encryption
+      description: The software stores or transmits sensitive data using an encryption
+        scheme that is not strong enough.
+      information: https://github.com/ExxonMobil/Heimdall/blob/main/docs/checks.md#encryption
+    - hash: 85f5e25f85e300e6e2d3ceccc071df059ca387be29857b75ca501a293207d1a3
+      check: HTTP headers
+      title: Headers Check Unexpected Error
+      category: http-headers
+      description: The target URL provided caused an unexpected error on Heimdall
+        headers check.
+      information: https://github.com/ExxonMobil/Heimdall/blob/main/docs/checks.md#http-headers
+    - hash: d4a24f2a3e7ccdd79cdc3cd6062b68caabbf7f6a17af2cd61a763c730df51704
+      check: Subject Alternative Name (SAN)
+      title: SAN Hostname Mismatch
+      category: certificate
+      description: Subject Alternative Name (SAN) listed does not match the hostname.
+      information: https://github.com/ExxonMobil/Heimdall/blob/main/docs/checks.md#certificate
+    risk_assessment: Passed
+    vpc_enabled: true
