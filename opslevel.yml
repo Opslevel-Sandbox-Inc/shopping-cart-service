@@ -100,9 +100,7 @@ service:
   - alias: catalog_service
   - alias: order_workflow_service
     notes: 'This is a pub sub model '
-  - alias: wishlist
-  - alias: localization
-  - alias: stale_cart
+  - alias: mobile_app
   alert_sources:
   - type: pagerduty
     external_id: PAQ8CJA
