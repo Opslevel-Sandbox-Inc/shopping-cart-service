@@ -92,18 +92,12 @@ service:
     category: deployment
     url: https://octopus.com/app/admin/managing-infrastructure/deploys/
     environment:
-  - name: Pagerduty
-    category: incidents
-    url: https://adgdemo.pagerduty.com/service-directory/PAQ8CJA
-    environment:
   dependencies:
   - alias: catalog_service
   - alias: order_workflow_service
     notes: 'This is a pub sub model '
   - alias: mobile_app
   alert_sources:
-  - type: pagerduty
-    external_id: PAQ8CJA
   - type: datadog
     external_id: '48998451'
   properties:
