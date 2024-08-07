@@ -35,6 +35,11 @@ service:
     value: '5.6'
   - key: resource_provider
     value: aws
+  repositories:
+  - name: Opslevel-Sandbox-Inc/shopping-cart-service
+    path: "/"
+    provider: github
+    display_name: shopping-cart
   tools:
   - name: PagerDuty
     category: incidents
